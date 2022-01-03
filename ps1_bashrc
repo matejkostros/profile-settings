@@ -1,0 +1,15 @@
+# Prerequisite is https://github.com/sharkdp/vivid to be installed on the system 
+
+## Dynamic PS1
+function color_my_prompt {
+    local __user_and_host="\[\033[01;32m\]\u@\h"
+    local __cur_location="\[\033[01;34m\]\w"
+    local __git_branch_color="\[\033[31m\]"
+    #local __git_branch="\`ruby -e \"print (%x{git branch 2> /dev/null}.grep(/^\*/).first || '').gsub(/^\* (.+)$/, '(\1) ')\"\`"
+    local __git_branch='`git branch 2> /dev/null | grep -e ^* | sed -E  s/^\\\\\*\ \(.+\)$/\(\\\\\1\)\ /`'
+    local __prompt_tail="└>$"
+    local __last_color="\[\033[00m\]"
+    export PS1="┌$__user_and_host $__cur_location $__git_branch_color$__git_branch\\n$__last_color$__prompt_tail "
+}
+color_my_prompt
+export LS_COLORS="$(vivid -m 8-bit generate snazzy)"
