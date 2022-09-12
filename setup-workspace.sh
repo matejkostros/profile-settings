@@ -2,7 +2,7 @@
 
 myname=$(whoami)
 myhome=$(grep ${myname} /etc/passwd|awk -F':' '{print $6}')
-PACKAGES="neovim tree python3-pip jq ansible docker"
+PACKAGES="neovim tree python3-pip jq ansible"
 #Functions 
 
 # Get latest release of repo from github. Thanks Lukechilds.
@@ -43,7 +43,7 @@ else
 fi
 
 # Install packages
-sudo $INSTALL -y ${PACKAGES}  > /dev/null && echo -e "\n ####### Packages PACKAGES installed Successfully"
+sudo $INSTALL -y ${PACKAGES}   && echo -e "\n ####### Packages PACKAGES installed Successfully"
 
 ##### Configure Environment
 
